@@ -76,5 +76,6 @@ export class InfraStack extends cdk.Stack {
     // Outputs
     new cdk.CfnOutput(this, 'ApiUrl', { value: api.url });
     new cdk.CfnOutput(this, 'CloudFrontUrl', { value: `https://${distribution.distributionDomainName}` });
+    new cdk.CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
   }
 }
