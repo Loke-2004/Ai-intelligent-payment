@@ -53,10 +53,14 @@ export class InfraStack extends cdk.Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     });
 
+    // Explicitly create OAI
+    const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'OAI');
+    siteBucket.grantRead(originAccessIdentity);
+
     // 5. CloudFront Distribution
     const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
       defaultBehavior: {
-        origin: new cloudfront_origins.S3Origin(siteBucket),
+        origin: new cloudfront_origins.S3Origin(siteBucket, { originAccessIdentity }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
       defaultRootObject: 'index.html',
