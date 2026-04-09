@@ -1,8 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  /* Elite Color Palette */
+  --color-primary: #050B15;
+  --color-secondary: #0F172A;
+  --color-accent-purple: #8B5CF6;
+  --color-accent-blue: #0EA5E9;
+  --color-accent-cyan: #22D3EE;
+  --color-card-bg: rgba(15, 23, 42, 0.6);
+  --color-blue-structure: #1E40AF;
+  --color-blue-soft: #60A5FA;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+  --color-warning: #F59E0B;
+  --color-text-primary: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Elite Gradients */
+  --background-image-ai-gradient: linear-gradient(135deg, #8B5CF6, #6366F1, #0EA5E9);
+  --background-image-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  --background-image-mesh-gradient: radial-gradient(circle at 50% 50%, #0F172A 0%, #050B15 100%);
+
+  /* Elite Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glass-inner: inset 0 0 20px 0 rgba(255, 255, 255, 0.05);
+  --shadow-ai-glow: 0 0 40px rgba(139, 92, 246, 0.2);
+  --shadow-ai-glow-strong: 0 0 60px rgba(139, 92, 246, 0.4);
+
+  /* Elite Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-aura: pulse-aura 4s ease-in-out infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes pulse-aura {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.1); }
+  }
+}
 
 @layer base {
   :root {
@@ -28,7 +68,7 @@
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: var(--shadow-glass);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
