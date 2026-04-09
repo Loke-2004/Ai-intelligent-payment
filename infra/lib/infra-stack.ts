@@ -47,6 +47,7 @@ export class InfraStack extends cdk.Stack {
 
     // 4. S3 Bucket for Static Website
     const siteBucket = new s3.Bucket(this, 'SiteBucket', {
+      bucketName: process.env.S3_BUCKET_NAME,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
