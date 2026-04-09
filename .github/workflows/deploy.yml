@@ -47,6 +47,8 @@ jobs:
           cd client
           npm install
           npm run build
+        env:
+          VITE_BUILD_TS: "true"
 
       - name: Deploy to S3
         run: |
