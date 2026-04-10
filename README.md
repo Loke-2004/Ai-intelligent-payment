@@ -1,69 +1,58 @@
-# AI Powered Intelligent Payment Orchestration System
+# 🟣 AuraPay | Intelligent AI Payment Orchestrator
 
-A premium, high-speed payment orchestration engine with real-time AI fraud prevention and intelligent routing.
-
-## 🚀 Overview
-This system dynamically selects the best payment route (UPI, Cards, Wallets) based on cost and success rate, while proactively blocking fraudulent transactions using a simulated AI model in AWS Lambda.
-
-### Core Features
-- **🧠 Intelligent Routing**: Automatically chooses cheapest + fastest payment method.
-- **🚨 Real-Time Fraud Scoring**: ML-inspired model predicts fraud before processing.
-- **🌍 Cross-Border Optimization**: Suggests best routes (Wise/SWIFT) for international transfers.
-- **📊 Premium Dashboard**: Glassmorphism UI for decision tracking and analytics.
+**AuraPay** is a next-generation, serverless payment orchestration layer designed to autonomously route transactions to the most cost-effective and secure gateways. Built for the modern fintech era, it uses an "Intelligence Layer" to optimize global payment flows in real-time.
 
 ---
 
-## 🛠️ Tech Stack
-- **Frontend**: React, Tailwind CSS, Recharts, Framer Motion.
-- **Backend (Serverless)**: AWS Lambda, API Gateway.
-- **Database**: AWS DynamoDB.
-- **Infrastructure**: AWS CDK (Infrastructure as Code).
-- **CI/CD**: GitHub Actions.
+## 🚀 The Hackathon Pitch
+Payment fragmentation is a billion-dollar problem. Merchants lose up to 3% on transaction fees and 5% to false fraud positives. **AuraPay** solves this by acting as a "Neural Brain" for your payment stack, automatically selecting the best provider (Stripe, Razorpay, etc.) for every individual transaction.
+
+### ✨ Key Features
+- **⚡ Interactive Simulation**: A "Hero" demo mode that shows the AI reasoning steps—Scanning Risk, Selecting Routes, and Optimizing Currency Variance.
+- **💎 Elite Design**: A high-fidelity, glassmorphic dashboard built with **Tailwind CSS 4** and **Framer Motion** for a premium enterprise feel.
+- **🛡️ AI Threat Monitor**: Real-time security feed that identifies and blocks malicious transactions before they hit your gateway.
+- **🌍 Cross-Border Optimization**: Smart liquidity pool evaluation to minimize FX fees and maximize success rates.
 
 ---
 
-## ⚙️ Setup & Deployment
+## 🛠️ Technical Sophistication
 
-### 1. Prerequisites
-- AWS Account with Free Tier.
-- AWS CLI configured locally.
-- Node.js 18+.
+### Frontend (The Aura Dashboard)
+- **Framework**: React 19 + Vite (for lightning-fast HMR)
+- **Styling**: Tailwind CSS 4.0 (using the new `@theme` engine)
+- **Animations**: Framer Motion (60fps interactive transitions)
+- **UI Components**: Radix UI (accessible, high-performance primitives)
 
-### 2. Local Development
-```bash
+### Backend & Cloud (The Neural Core)
+- **Infrastructure**: AWS Cloud Development Kit (CDK)
+- **Compute**: AWS Lambda (Node.js 18)
+- **Database**: AWS DynamoDB (Single-table design)
+- **Networking**: Amazon CloudFront + S3 (Edge-delivery)
+- **CI/CD**: GitHub Actions with automated CloudFront cache invalidation.
+
+---
+
+## 🏗️ Getting Started
+
+### 1. Installation
+```powershell
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Loke-2004/Ai-intelligent-payment.git
 
-# Start Frontend
+# Install Frontend dependencies
 cd client
 npm install
-npm run dev
+npm run build
 ```
 
-### 3. Deploy to AWS (Personal Provisioning)
-```bash
-# Navigate to infra
-cd infra
-npm install
-
-# Deploy to AWS
-npx cdk deploy
-```
-
-### 4. GitHub Actions (CI/CD)
-Add the following secrets to your GitHub repository settings:
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `AWS_REGION`
-- `S3_BUCKET_NAME` (The name of the S3 bucket created by CDK)
+### 2. Deployment
+AuraPay is built for **Dual-Cloud Redundancy**:
+- **AWS URL**: [https://d26lh1awni2qgy.cloudfront.net/](https://d26lh1awni2qgy.cloudfront.net/)
+- **Vercel URL**: (Add your Vercel URL here!)
 
 ---
 
-## 📈 Business Value
-- **Reduce transaction costs by 15%** through intelligent routing.
-- **Prevent up to 30% of fraud losses** with pre-transaction scoring.
-- **Increase success rates** by dynamically switching routes during outages.
+## 👨‍💻 Submission Notes
+This project was built to demonstrate how **Serverless Architecture** and **AI Orchestration** can be combined into a production-ready fintech product in a hackathon timeframe. Every visual glow, neural pulse, and data update is designed to show the "Intelligence" behind the platform.
 
----
-
-*Powered by PayOrchestrate AI.*
+**Built with ❤️ for the Hackathon by Lokesh.**
