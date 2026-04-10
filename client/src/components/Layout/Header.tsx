@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Bell, User, Command } from 'lucide-react';
+import { Search, Bell, User, Command, Zap } from 'lucide-react';
 
 interface HeaderProps {
   title: string;
+  onSimulate?: () => void;
+  isSimulating?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, onSimulate, isSimulating }) => {
   return (
     <motion.header 
       initial={{ y: -20, opacity: 0 }}
@@ -38,6 +40,28 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
       {/* Profile & Notifications */}
       <div className="flex items-center gap-5">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          disabled={isSimulating}
+          onClick={onSimulate}
+          className={`group px-6 py-3 rounded-2xl font-bold flex items-center gap-2 transition-all relative overflow-hidden ${
+            isSimulating 
+              ? 'bg-white/5 text-text-muted cursor-not-allowed border border-white/5' 
+              : 'bg-ai-gradient text-white shadow-ai-glow hover:shadow-ai-glow-strong'
+          }`}
+        >
+          <Zap size={18} className={isSimulating ? 'animate-pulse' : ''} />
+          <span className="relative z-10">
+            {isSimulating ? 'Neural Processing...' : 'Simulate Transaction'}
+          </span>
+          {!isSimulating && (
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          )}
+        </motion.button>
+
+        <div className="w-[1px] h-8 bg-white/5" />
+
         <motion.button 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

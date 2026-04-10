@@ -17,17 +17,18 @@ interface StatCardProps {
   trend?: string;
   trendColor?: 'green' | 'red';
   isAI?: boolean;
+  isSimulating?: boolean;
   index: number;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon: Icon, trend, trendColor, isAI = false, index }) => {
+const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon: Icon, trend, trendColor, isAI = false, isSimulating = false, index }) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -5 }}
-      className={`glass-card p-6 rounded-[2rem] relative overflow-hidden group ${isAI ? 'ai-aura' : ''}`}
+      className={`glass-card p-6 rounded-[2rem] relative overflow-hidden group ${isAI ? 'ai-aura' : ''} ${isAI && isSimulating ? 'simulate-pulse' : ''}`}
     >
       {/* Background Glow */}
       <div className={`absolute -right-4 -top-4 w-32 h-32 blur-3xl opacity-5 transition-opacity group-hover:opacity-10 ${isAI ? 'bg-accent-purple' : 'bg-accent-blue'}`} />
@@ -92,43 +93,47 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon: Icon,
   );
 };
 
-const DashboardCards: React.FC = () => {
+const DashboardCards: React.FC<{ stats: any, isSimulating: boolean }> = ({ stats, isSimulating }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10 py-6">
       <StatCard 
         index={0}
         title="Cost Saved Today"
-        value="₹4,820"
+        value={`₹${stats.costSaved.toLocaleString()}`}
         subtitle="Across 312 transactions"
         icon={IndianRupee}
         trend="+12%"
         trendColor="green"
+        isSimulating={isSimulating}
       />
       <StatCard 
         index={1}
         title="Fraud Blocked"
-        value="7 attempts"
+        value={`${stats.fraudBlocked} attempts`}
         subtitle="₹1,23,400 protected"
         icon={ShieldX}
         trend="2 high-risk"
         trendColor="red"
+        isSimulating={isSimulating}
       />
       <StatCard 
         index={2}
         title="Transactions Today"
-        value="1,248"
+        value={stats.transactions.toLocaleString()}
         subtitle="98.4% success rate"
         icon={Zap}
         trend="+5%"
         trendColor="green"
+        isSimulating={isSimulating}
       />
       <StatCard 
         index={3}
         title="Avg Routing Score"
-        value="94.2"
+        value={stats.routingScore.toFixed(1)}
         subtitle="AI confidence level"
         icon={BrainCircuit}
         isAI={true}
+        isSimulating={isSimulating}
       />
     </div>
   );

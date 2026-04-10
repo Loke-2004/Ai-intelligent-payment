@@ -8,12 +8,54 @@ import ActivityChart from './components/Dashboard/ActivityChart';
 import RiskFeed from './components/Dashboard/RiskFeed';
 import RoutingPanel from './components/Dashboard/RoutingPanel';
 import CrossBorderOptimizer from './components/Dashboard/CrossBorderOptimizer';
+import SimulationOverlay from './components/Dashboard/SimulationOverlay';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Dashboard');
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [simulationStep, setSimulationStep] = useState(0);
+  const [stats, setStats] = useState({
+    costSaved: 4820,
+    fraudBlocked: 7,
+    transactions: 1248,
+    routingScore: 94.2
+  });
+
+  const runSimulation = () => {
+    if (isSimulating) return;
+    
+    setIsSimulating(true);
+    setSimulationStep(1);
+
+    // Step-by-step simulation phases
+    const steps = [
+      { step: 1, delay: 1500 }, // Analyzing Risk
+      { step: 2, delay: 3000 }, // Routing
+      { step: 3, delay: 4500 }, // Finalizing
+    ];
+
+    steps.forEach(({ step, delay }) => {
+      setTimeout(() => setSimulationStep(step), delay);
+    });
+
+    // Final Success Callback
+    setTimeout(() => {
+      setIsSimulating(false);
+      setSimulationStep(0);
+      setStats(prev => ({
+        ...prev,
+        costSaved: prev.costSaved + 1240,
+        transactions: prev.transactions + 1,
+        routingScore: Math.min(99.9, prev.routingScore + 0.1)
+      }));
+    }, 6000);
+  };
 
   return (
-    <div className="min-h-screen bg-primary flex text-text-primary selection:bg-accent-purple/30">
+    <div className={`min-h-screen bg-primary flex text-text-primary selection:bg-accent-purple/30 ${isSimulating ? 'overflow-hidden' : ''}`}>
+      {/* 🟢 Simulation Overlay */}
+      {isSimulating && <SimulationOverlay step={simulationStep} />}
+
       {/* 🔮 Moving Mesh Background */}
       <div className="mesh-container">
         <div className="mesh-blob mesh-blob-1" />
@@ -26,7 +68,7 @@ const App: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 ml-[240px] flex flex-col min-w-0 relative">
-        <Header title={activeTab} />
+        <Header title={activeTab} onSimulate={runSimulation} isSimulating={isSimulating} />
 
         <div className="flex-1 overflow-y-auto pb-12 custom-scrollbar">
           <AnimatePresence mode="wait">
@@ -40,7 +82,7 @@ const App: React.FC = () => {
               {activeTab === 'Dashboard' ? (
                 <div className="max-w-[1600px] mx-auto w-full">
                   {/* Top Row: Stat Cards */}
-                  <DashboardCards />
+                  <DashboardCards stats={stats} isSimulating={isSimulating} />
 
                   {/* Middle Row: Chart & Risk Feed */}
                   <div className="grid grid-cols-1 xl:grid-cols-10 gap-8 px-10 py-4">
