@@ -1,3 +1,4 @@
+// Triggering deployment with CloudFront distribution secret configured
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from './components/Layout/Sidebar';
