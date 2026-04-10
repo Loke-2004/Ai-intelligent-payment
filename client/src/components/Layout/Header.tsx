@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
           className="flex items-center gap-4 pl-2 cursor-pointer group"
         >
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-black text-white leading-none">Loke Finance</p>
+            <p className="text-sm font-black text-white leading-none">AuraPay</p>
             <p className="text-[10px] font-bold text-accent-blue uppercase tracking-widest mt-1">Enterprise Tier</p>
           </div>
           <div className="relative">
