@@ -42,6 +42,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const ActivityChart: React.FC = () => {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
@@ -66,7 +72,8 @@ const ActivityChart: React.FC = () => {
       </div>
 
       <div className="h-[300px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
+        {mounted && (
+          <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <defs>
               <linearGradient id="colorRouted" x1="0" y1="0" x2="0" y2="1">
@@ -111,6 +118,7 @@ const ActivityChart: React.FC = () => {
             />
           </AreaChart>
         </ResponsiveContainer>
+        )}
       </div>
 
       {/* Decorative HUD Elements */}
